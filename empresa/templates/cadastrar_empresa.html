@@ -3,12 +3,13 @@
 {{msg}}
 <a href="/"><button>Home</button></a>
 <h1>Criar Empresa</h1>
-<form method="POST" action="/">
+<form method="POST">
   {% csrf_token %}
   <input type="text" name="nome" placeholder="Nome" required>
   <input type="text" name="cnpj" placeholder="CNPJ">
+  <input type="text" name="endereco" placeholder="Endereço">
   <input type="email" name="email" placeholder="E-mail">
   <input type="tel" name="telefone" placeholder="Telefone">
  <input type="submit" value="Cadastrar">
 </form>
-{% endblock %}
+{% endblock %}o

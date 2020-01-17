@@ -4,35 +4,39 @@ from empresa.forms import EmpresaForm
 
 # Create your views here.
 def cadastrar_empresa(request):
-  args = {'msg': ''}
-  if request.method == 'POST':
+    print('Entrei')
+    args = {'msg': ''}
+    if request.method == 'POST':
         empresa = Empresa()
         empresa.nome = request.POST.get('nome')
-        empresa.cnpj = request.POST.get('cnpj')
+        empresa.endereco = request.POST.get('endereco')
         empresa.email = request.POST.get('email')
         empresa.telefone = request.POST.get('telefone')
-        empresa.save()  
+        empresa.cnpj = request.POST.get('cnpj')
+        print('Peguei os dados')
+        empresa.save()
+        print('Salvei os dados')  
     return render(request, 'cadastrar_empresa.html', args)
-
+ 
 
 def mostrar_empresas(request):
-  empresa = Empresa.objects.all()
-  return render(request, 'empresas.html', {'dados': empresa})
+    empresa = Empresa.objects.all()
+    return render(request, 'empresas.html', {'dados': empresa})
 
-def delete(request, id):
-    empresa = Empresa.objects.get(id=id)
+def delete_empresa(request, id):
+    empresa = Empresa.objects.get(pk=id)
 
     args = {
-        'pessoa': empresa
+        'empresa': empresa
     }
 
     empresa.delete()
-    return render(request, 'delete.html', args)
+    return render(request, 'delete_empresa.html', args)
 
 
-def update(request):
+def update_empresa(request, id):
 
-    empresa = Empresa.objects.get(id=id)
+    empresa = Empresa.objects.get(pk=id)
     form = EmpresaForm(request.POST or None, instance=empresa)
 
     if form.is_valid():
@@ -40,10 +44,10 @@ def update(request):
         return redirect(f'../detail/{pessoa.id}')
 
     args = {
-        'pessoa':empresa,
+        'empresa':empresa,
         'form':form
     }
-    return render(request, 'update.html', args)
+    return render(request, 'update_empresa.html', args)
 
 
 

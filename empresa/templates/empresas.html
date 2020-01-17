@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<h4>Empresas</h4>
+{% for empresa in dados %}
+  <div>
+    <p>Nome: {{empresa.nome}}</p>
+    <p>CNPJ: {{empresa.cnpj}}</p>
+  </div>
+  <a href="empresa/update/{{empresa.id}}"><button>Atualizar empresa</button></a>
+  <a href="empresa/delete/{{empresa.id}}"><button>Deletar empresa</button></a>
+  <hr>
+{% endfor %}
+{% endblock %}
+ 

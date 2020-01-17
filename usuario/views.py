@@ -29,7 +29,7 @@ def login(request):
   return render(request, 'login.html', {'msg': 'seja bem vindo'})
 
 def delete(request, id):
-    pessoa = Pessoa.objects.get(id=id)
+    pessoa = Pessoa.objects.get(pk=id)
 
     args = {
         'pessoa': pessoa
@@ -39,9 +39,9 @@ def delete(request, id):
     return render(request, 'delete.html', args)
 
 
-def update(request):
+def update(request, id):
 
-    pessoa = Pessoa.objects.get(id=id)
+    pessoa = Pessoa.objects.get(pk=id)
     form = PessoaForm(request.POST or None, instance=pessoa)
 
     if form.is_valid():

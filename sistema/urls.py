@@ -13,6 +13,9 @@ urlpatterns = [
     path('update/<int:id>', update),
     path('', home),
     path('cadastro', cadastrar_empresa),
+    path('empresas', mostrar_empresas),
+    path('empresa/delete/<int:id>', delete_empresa),
+    path('empresa/update/<int:id>', update_empresa),
     
  
 ]

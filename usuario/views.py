@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import Pessoa
-
+from django.shortcuts import render, redirect
+from usuario.models import Pessoa
+from usuario.forms import PessoaForm
 def mostrar_formulario_cadastro(request):
   args = {'msg': ''}
   if request.method == 'POST':
@@ -11,7 +11,7 @@ def mostrar_formulario_cadastro(request):
     pessoa.telefone = request.POST.get('telefone')
     pessoa.genero = request.POST.get('genero')
     pessoa.save()
-    return render(request, 'login.html')
+    return render(request, '/login.html')
   return render(request, 'cadastrar_pessoa.html', args)
 
 def mostrar_pessoas(request):
@@ -27,3 +27,29 @@ def login(request):
     return render(request, 'login.html', {'msg': 'Ops, não encontramos'})
 
   return render(request, 'login.html', {'msg': 'seja bem vindo'})
+
+def delete(request, id):
+    pessoa = Pessoa.objects.get(id=id)
+
+    args = {
+        'pessoa': pessoa
+    }
+
+    pessoa.delete()
+    return render(request, 'delete.html', args)
+
+
+def update(request):
+
+    pessoa = Pessoa.objects.get(id=id)
+    form = PessoaForm(request.POST or None, instance=pessoa)
+
+    if form.is_valid():
+        form.save()
+        return redirect(f'../detail/{pessoa.id}')
+
+    args = {
+        'pessoa':pessoa,
+        'form':form
+    }
+    return render(request, 'update.html', args)

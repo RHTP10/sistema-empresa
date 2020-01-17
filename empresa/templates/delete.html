@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="container">
+    <h1>Detalhes da Empresa</h1>
+    {% if empresa %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Nome: {{empresa.nome}}</h5>
+            <p class="card-text">Empresa deletada</p>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

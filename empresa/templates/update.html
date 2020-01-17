@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
 <section class="container">
-    <h1>Edição de Pessoas</h1>
-    {% if pessoa %}
+    <h1>Edição de Empresa</h1>
+    {% if empresa %}
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit" class="btn btn-primary"> Cadastrar pessoa</button>
+        <button type="submit" class="btn btn-primary"> Cadastrar empresa</button>
     </form>
     {% endif %}
 </section>

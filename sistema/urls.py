@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 from usuario.views import *
+from empresa.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,5 +12,7 @@ urlpatterns = [
     path('delete/<int:id>', delete),
     path('update/<int:id>', update),
     path('', home),
+    path('cadastro', cadastrar_empresa),
+    
  
 ]

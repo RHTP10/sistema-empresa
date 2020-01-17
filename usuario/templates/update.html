@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="container">
+    <h1>Edição de Pessoas</h1>
+    {% if pessoa %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary"> Cadastrar pessoa</button>
+    </form>
+    {% endif %}
+</section>
+{% endblock %}

@@ -6,6 +6,8 @@
     <p>Nome: {{pessoa.nome}}</p>
     <p>CPF: {{pessoa.cpf}}</p>
   </div>
+  <a href="/update/{{pessoa.id}}"><button>Atualizar pessoa</button></a>
+  <a href="/delete/{{pessoa.id}}"><button>Deletar pessoa</button></a>
   <hr>
 {% endfor %}
 {% endblock %}

@@ -53,3 +53,19 @@ def update(request):
         'form':form
     }
     return render(request, 'update.html', args)
+
+
+def home(request):
+    form = PessoaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/', kwargs={'msg':'Cadastrado com sucesso'})
+
+    pessoas = reversed(Pessoa.objects.filter().all())
+
+    args = {
+        'gatinhos': pessoas,
+        'form':form
+    }
+
+    return render(request, 'base.html', args)
